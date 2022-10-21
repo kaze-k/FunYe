@@ -34,7 +34,7 @@ class Translation:
 
         return accept_response
 
-    def handle_response(self) -> List[str]:
+    def handle_response(self) -> Tuple[List[List]]:
         """处理响应"""
         accept_response = self.handle_request()
         read_response = accept_response.read().decode("utf-8")
@@ -45,7 +45,7 @@ class Translation:
         return translateResult
 
     def handle_data(self) -> Tuple[List[str] ,List[str]]:
-        """响应得到的数据"""
+        """处理响应得到的数据"""
         translateResult = self.handle_response()
         original_list = []
         translation_list = []
@@ -63,4 +63,4 @@ class Translation:
             return self.handle_data()
         except urllib.error.URLError:
             data = ERROR_TEXT
-            return data, False
+            return data, None

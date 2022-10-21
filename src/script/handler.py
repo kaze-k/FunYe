@@ -1,8 +1,7 @@
 from typing import Any
 from datetime import datetime
 
-from rich.text import Text
-from rich.text import TextType
+from rich.text import TextType, Text
 from rich.style import Style
 
 

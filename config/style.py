@@ -168,4 +168,13 @@ RESULTS_TRANSLATION_STYLE = Style(
     underline=False
 )
 
+RESULTS_ERROR_STYLE = Style(
+    color="#ff0000",
+    bold=True,
+    italic=False,
+    dim=False,
+    blink=False,
+    underline=False
+)
+
 TITLE = "FunYe"

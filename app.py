@@ -5,7 +5,7 @@ from datetime import datetime
 from io import StringIO
 
 from textual.app import App
-from rich.text import TextType
+from rich.text import TextType, Text
 
 from src.ui import HistoryBox, InputBox, ResultsBox, Header
 from src.script import Translation, Handler
@@ -15,6 +15,7 @@ from config import (
     HISTORY_DATA_STYLE,
     RESULTS_ORIGINAL_STYLE,
     RESULTS_TRANSLATION_STYLE,
+    RESULTS_ERROR_STYLE,
     TITLE
 )
 
@@ -137,7 +138,7 @@ class FunYe(App):
                 RESULTS_TRANSLATION_STYLE
             )
         else:
-            retsults_data = Text(original, style="#ff0000")
+            results_data = Text(original, style=RESULTS_ERROR_STYLE)
 
         return results_data
 
