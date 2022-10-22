@@ -119,7 +119,8 @@ class FunYe(App):
 
         return results_data
 
-    async def handle_history_data(self):
+    async def handle_history_data(self) -> Text:
+        """将得到的译文和原文添加到HistoryBox中，并进行格式化处理"""
         empty = ""
 
         original = "\n".join(self.original)
