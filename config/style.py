@@ -142,12 +142,22 @@ HISTORY_TIME_STYLE = Style(
     blink=False
 )
 
-HISTORY_DATA_STYLE = Style(
+HISTORY_ORIGINAL_STYLE = Style(
+    color="#b6abf5",
+    bold=False,
+    italic=False,
+    dim=False,
+    blink=False,
+    underline=True
+)
+
+HISTORY_TRANSLATION_STYLE = Style(
     color="#78d3f2",
     bold=False,
     italic=False,
     dim=False,
-    blink=False
+    blink=False,
+    underline=False
 )
 
 RESULTS_ORIGINAL_STYLE = Style(

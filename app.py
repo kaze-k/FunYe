@@ -12,7 +12,8 @@ from src.script import Translation, Handler
 from config import (
     TIME_SYMBOL,
     HISTORY_TIME_STYLE,
-    HISTORY_DATA_STYLE,
+    HISTORY_ORIGINAL_STYLE,
+    HISTORY_TRANSLATION_STYLE,
     RESULTS_ORIGINAL_STYLE,
     RESULTS_TRANSLATION_STYLE,
     RESULTS_ERROR_STYLE,
@@ -22,8 +23,12 @@ from config import (
 
 class FunYe(App):
     time_io: _io.StringIO = StringIO()
+    original_io: _io.StringIO = StringIO()
+    translation_io: _io.StringIO = StringIO()
     data_io: _io.StringIO = StringIO()
     dataList: List[str] = []
+    original: List[str] = []
+    translation: List[str] = []
 
     async def on_load(self) -> None:
         """按键绑定"""
@@ -78,52 +83,20 @@ class FunYe(App):
         value = self.input.value
 
         if value != "" and not value.isspace():
-            history_text = await self.handle_history_data()
             results_text = await self.handle_results_data()
-            await self.history.update(history_text)
+            history_text = await self.handle_history_data()
             await self.results.update(results_text)
+            await self.history.update(history_text)
 
         await self.input.clear_input()
 
     async def action_quit(self) -> None:
         """关闭开启的内存并关闭应用"""
         self.time_io.close()
+        self.original_io.close()
+        self.translation_io.close()
         self.data_io.close()
         await self.shutdown()
-
-    async def handle_history_data(self) -> Text:
-        """将从InputBox中获取的数据存入内存中，并进行格式化处理"""
-        empty = ""
-
-        formatted_time = TIME_SYMBOL + datetime.now().time().strftime("%X") + "\r"
-        formatted_data = self.input.value + "\r"
-
-        self.time_io.write(formatted_time)
-        self.data_io.write(formatted_data)
-
-        meta_time = self.time_io.getvalue()
-        meta_data = self.data_io.getvalue()
-
-        time_list = meta_time.split("\r")
-        data_list = meta_data.split("\r")
-
-        time_list.reverse()
-        data_list.reverse()
-        del time_list[0]
-        del data_list[0]
-
-        history_data = Handler.formatter(
-            time_list,
-            data_list,
-            HISTORY_TIME_STYLE,
-            HISTORY_DATA_STYLE,
-            "\n\n"
-        )
-
-        data_list.append(empty)
-        self.dataList = data_list
-
-        return history_data
 
     async def handle_results_data(self) -> Text:
         """将翻译结果渲染到ResultsBox中，并进行格式化处理"""
@@ -132,15 +105,70 @@ class FunYe(App):
 
         if translation:
             results_data = Handler.formatter(
-                original,
-                translation,
                 RESULTS_ORIGINAL_STYLE,
-                RESULTS_TRANSLATION_STYLE
+                RESULTS_TRANSLATION_STYLE,
+                original,
+                translation
             )
+            self.original = original
+            self.translation = translation
         else:
             results_data = Text(original, style=RESULTS_ERROR_STYLE)
+            self.original = []
+            self.translation = []
 
         return results_data
+
+    async def handle_history_data(self):
+        empty = ""
+
+        original = "\n".join(self.original)
+        translation = "\n".join(self.translation)
+
+        formatted_time = TIME_SYMBOL + datetime.now().time().strftime("%X") + "\r"
+        formatted_original = original + "\r"
+        formatted_translation = translation + "\r"
+        formatted_data = self.input.value + "\r"
+
+        self.data_io.write(formatted_data)
+        if self.translation != []:
+            self.time_io.write(formatted_time)
+            self.original_io.write(formatted_original)
+            self.translation_io.write(formatted_translation)
+
+        meta_data = self.data_io.getvalue()
+        meta_time = self.time_io.getvalue()
+        meta_original = self.original_io.getvalue()
+        meta_translation = self.translation_io.getvalue()
+
+        data_list = meta_data.split("\r")
+        time_list = meta_time.split("\r")
+        original_list = meta_original.split("\r")
+        translation_list = meta_translation.split("\r")
+
+        data_list.reverse()
+        time_list.reverse()
+        original_list.reverse()
+        translation_list.reverse()
+        del data_list[0]
+        del time_list[0]
+        del original_list[0]
+        del translation_list[0]
+
+        history_data = Handler.formatter(
+            style1=HISTORY_TIME_STYLE,
+            style2=HISTORY_ORIGINAL_STYLE,
+            style3=HISTORY_TRANSLATION_STYLE,
+            list1=time_list,
+            list2=original_list,
+            list3=translation_list,
+            char="\n\n"
+        )
+
+        data_list.append(empty)
+        self.dataList = data_list
+
+        return history_data
 
 
 if __name__ == "__main__":
