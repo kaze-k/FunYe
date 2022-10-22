@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Any
+from typing import List, Any
 from datetime import datetime
 from io import StringIO
 
