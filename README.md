@@ -45,7 +45,7 @@ source ./bin/build.sh
 ```
 
 ## 配置颜色样式
-`config/style.py`中可以进行颜色的调整，修改后重新构建一下即可。
+`config/style.py`中可以进行颜色的调整，修改后重新编译一下即可。
 
 ## 技术
 - [Textual](https://github.com/Textualize/textual)是一个python的TUI框架
