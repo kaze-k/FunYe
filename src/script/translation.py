@@ -50,10 +50,12 @@ class Translation:
         original_list = []
         translation_list = []
         for i in range(len(translateResult)):
-            original_text = translateResult[i][0]['src']
-            translation_text = translateResult[i][0]['tgt']
-            original_list.append(original_text)
-            translation_list.append(translation_text)
+            original = translateResult[i]
+            for i in range(len(original)):
+                original_text = original[i]['src']
+                original_list.append(original_text)
+                translation_text = original[i]['tgt']
+                translation_list.append(translation_text)
 
         return original_list, translation_list
 
