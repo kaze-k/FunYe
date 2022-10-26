@@ -33,7 +33,7 @@ class FunYe(App):
     async def on_load(self) -> None:
         """按键绑定"""
         await self.bind("escape", "quit", show=False)
-        await self.bind("f1", "submit", show=False)
+        await self.bind("enter", "submit", show=False)
         await self.bind("up", "before_history", show=False)
         await self.bind("down", "after_history", show=False)
         await self.bind("ctrl+l", "clear_input", show=False)
