@@ -24,7 +24,7 @@ source ./FunYe
 
 快捷键
 
-- `F1` 提交翻译内容
+- `Enter` 提交翻译内容
 - `up` 上一个输入记录
 - `down` 下一个输入记录
 - `ESC` 退出程序
@@ -48,7 +48,7 @@ source ./bin/build.sh
 `config/style.py`中可以进行颜色的调整，修改后重新编译一下即可。
 
 ## 技术
-- [Textual](https://github.com/Textualize/textual)是一个python的TUI框架
+- [Textual(v0.1.18)](https://github.com/Textualize/textual)是一个python的TUI框架(现在框架已更新到新的分支)
 
 - [Rich](https://github.com/Textualize/rich)是一个 Python 库，可以为您在终端中提供富文本和精美格式
 
