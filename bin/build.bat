@@ -1,2 +1,3 @@
-pip install -e .
-pyinstaller -F ./app.py -n "FunYe" -i ./img/icon.ico
+@echo off
+pip install py-make
+pymake
