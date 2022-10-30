@@ -8,11 +8,12 @@
 	clear
 	lint
 	type
+	remove
 
 .DEAFULT:all
 
 all:
-	# install dependencies and compile
+	# install dependencies and compile and pre-commit install
 	@make compile
 	pre-commit install
 
@@ -48,3 +49,7 @@ lint:
 type:
 	# type check
 	mypy src
+
+remove:
+	# remove all dependencies(make)
+	pip uninstall -r requirements.txt -y
