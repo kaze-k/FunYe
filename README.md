@@ -4,11 +4,12 @@
 
 **FunYe**是一个基于[Textual](https://github.com/Textualize/textual)框架的TUI翻译应用
 
+
 ## 使用
 
 Windows
 
-`program`目录下的FunYe.exe是Windows上的可执行文件，下载到本地，到Powershell中切换到文件所在目录下，输入以下命令即可使用。（实测在windows自带的终端模拟器无法完整渲染，最好使用Windows Terminal)
+`program`目录下的FunYe.exe是Windows上的可执行文件，下载到本地，到Powershell中切换到文件所在目录下，输入以下命令即可使用。（实测在windows自带的终端模拟器无法完整渲染，最好使用Windows Terminal）
 
 ```Powershell
 ./FunYe.exe
@@ -30,21 +31,26 @@ source ./FunYe
 - `ESC` 退出程序
 - `ctrl+l` 清空输入框中的内容
 
+
 ## 编译
 
 Windows
 
 ```powershell
-./bin/build.bat
+./bin/make.bat
 ```
 
 Linux
 
 ```bash
-source ./bin/build.sh
+source ./bin/make.sh
 ```
 
+有`make`也可以直接`make`
+
+
 ## 配置颜色样式
+
 `config/style.py`中可以进行颜色的调整，修改后重新编译一下即可。
 
 ## 技术
