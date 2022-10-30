@@ -1,2 +1,2 @@
-pip install py-make > /dev/null
-pymake > /dev/null
+pip install py-make
+pymake

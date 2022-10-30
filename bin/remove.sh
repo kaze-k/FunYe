@@ -1,1 +1,1 @@
-pip uninstall -r requirements.txt -y > /dev/null
+pip uninstall -r requirements.txt -y
