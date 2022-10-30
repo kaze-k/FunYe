@@ -14,6 +14,7 @@
 all:
 	# install dependencies and compile
 	@make compile
+	pre-commit install
 
 install-all:
 	# install all dependencies
