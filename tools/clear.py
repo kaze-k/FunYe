@@ -1,5 +1,6 @@
 import os
 
+
 def clear(file_path):
     files = os.listdir(file_path)
     for fd in files:
@@ -15,6 +16,7 @@ def clear(file_path):
                 print("删除 %s" % cur_path)
             else:
                 clear(cur_path)
+
 
 if __name__ == "__main__":
     if os.name == "nt":

@@ -6,6 +6,8 @@
 	compile
 	clean
 	clear
+	lint
+	type
 
 .DEAFULT:all
 
@@ -37,3 +39,11 @@ clean:
 clear:
 	# delete __pycahe__ directory and *.pyc file
 	python ./tools/clear.py
+
+lint:
+	# lint code
+	flake8 src
+
+type:
+	# type check
+	mypy src

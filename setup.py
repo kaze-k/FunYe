@@ -14,7 +14,10 @@ setup(
         'dev': [
             "wheel>=0.37.1",
             "py-make>=0.1.1",
-            "pyinstaller>=5.6.1"
+            "pyinstaller>=5.6.1",
+            "pre-commit>=2.20.0",
+            "flake8>=5.0.4",
+            "mypy>=0.982"
         ]
     }
 )

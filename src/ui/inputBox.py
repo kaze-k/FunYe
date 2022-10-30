@@ -3,14 +3,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 from textual_inputs import TextInput
-from textual import events
 from rich import box
-from datetime import datetime
 from rich.panel import Panel
 from rich.text import Text
 from textual.reactive import Reactive
 
-from config import(
+from config import (
     CURSOR, INPUTBOX_TITLE,
     INPUTBOX_BORDER_STYLE,
     INPUTBOX_TEXT_STYLE
@@ -42,6 +40,7 @@ class InputBox(TextInput):
 
     def render(self) -> RenderableType:
         """组件渲染"""
+        self.refresh()
         segments = self._render_text_with_cursor()
         text = Text.assemble(
             *segments,

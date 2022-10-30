@@ -1,20 +1,20 @@
-from typing import Any, List, Optional
-from datetime import datetime
+from typing import Any, List, Optional, Union
 
-from rich.text import TextType, Text
+from rich.text import Text
 from rich.style import Style
 
 
 class Handler:
     def formatter(
+        self,
         style1: Style,
         style2: Style,
         list1: Any,
         list2: Any,
         list3: Optional[List] = None,
-        style3: Optional[Style] = None,
+        style3: Union[str, Style] = "",
         char: str = "\n"
-    ) -> Text:
+    ) -> Any:
         """给不同数据添加不同的样式"""
         data = Text("")
         for i in range(len(list1)):

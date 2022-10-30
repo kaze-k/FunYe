@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from typing import List, Any
+from typing import List
 from datetime import datetime
 from io import StringIO
 
 from textual.app import App
-from rich.text import TextType, Text
+from rich.text import Text
 
 from src.ui import HistoryBox, InputBox, ResultsBox, Header
 from src.script import Translation, Handler
@@ -22,10 +22,10 @@ from config import (
 
 
 class FunYe(App):
-    time_io: _io.StringIO = StringIO()
-    original_io: _io.StringIO = StringIO()
-    translation_io: _io.StringIO = StringIO()
-    data_io: _io.StringIO = StringIO()
+    time_io: StringIO = StringIO()
+    original_io: StringIO = StringIO()
+    translation_io: StringIO = StringIO()
+    data_io: StringIO = StringIO()
     dataList: List[str] = []
     original: List[str] = []
     translation: List[str] = []
@@ -105,10 +105,11 @@ class FunYe(App):
 
         if translation:
             results_data = Handler.formatter(
-                RESULTS_ORIGINAL_STYLE,
-                RESULTS_TRANSLATION_STYLE,
-                original,
-                translation
+                self,
+                style1=RESULTS_ORIGINAL_STYLE,
+                style2=RESULTS_TRANSLATION_STYLE,
+                list1=original,
+                list2=translation
             )
             self.original = original
             self.translation = translation
@@ -157,6 +158,7 @@ class FunYe(App):
         del translation_list[0]
 
         history_data = Handler.formatter(
+            self,
             style1=HISTORY_TIME_STYLE,
             style2=HISTORY_ORIGINAL_STYLE,
             style3=HISTORY_TRANSLATION_STYLE,

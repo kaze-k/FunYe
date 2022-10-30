@@ -4,4 +4,9 @@ exclude =
     .git,
     __pycache__,
     build,
-    dist
+    dist,
+    config/*.py,
+    config,
+    tools/*.py,
+    tools
+max-line-length = 100

@@ -1,7 +1,6 @@
 from rich.table import Table
-from rich.style import Style
 from textual import events
-from textual.widgets import Header
+from textual.widgets import Header as WHeader
 
 from config import (
     HEADER_LEFT_TEXT_STYLE,
@@ -9,11 +8,11 @@ from config import (
 )
 
 
-class Header(Header):
+class Header(WHeader):
     def __init__(self) -> None:
         super().__init__()
         self.tall = False
-        self.style = None
+        self.style = ""
 
     def render(self) -> Table:
         header_table = Table.grid(padding=(0, 1), pad_edge=True, expand=True)
