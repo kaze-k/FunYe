@@ -26,7 +26,7 @@ install-dev:
 
 install:
 	# install dependencies
-	pip install -r ./requirements.txt
+	pip install -e .
 
 compile:install-all
 	# compile
