@@ -3,9 +3,11 @@ from __future__ import annotations
 from typing import List
 from datetime import datetime
 from io import StringIO
+from re import finditer
 
 from textual.app import App
 from rich.text import Text
+from pyperclip import copy
 
 from src.ui import HistoryBox, InputBox, ResultsBox, Header
 from src.script import Translation, Handler
@@ -17,6 +19,8 @@ from config import (
     RESULTS_ORIGINAL_STYLE,
     RESULTS_TRANSLATION_STYLE,
     RESULTS_ERROR_STYLE,
+    RESULTS_COPIED_TITLE,
+    RESULTS_COPIED_BORDER_STYLE,
     TITLE
 )
 
@@ -37,6 +41,7 @@ class FunYe(App):
         await self.bind("up", "before_history", show=False)
         await self.bind("down", "after_history", show=False)
         await self.bind("ctrl+l", "clear_input", show=False)
+        await self.bind("ctrl+y", "copy_results", show=False)
 
     async def on_mount(self) -> None:
         """应用挂载后的布局以及立即聚焦InputBox"""
@@ -72,7 +77,7 @@ class FunYe(App):
             self.input.data_index = 0
 
     async def action_clear_input(self) -> None:
-        """情况InputBox中的内容"""
+        """清空InputBox中的内容"""
         await self.input.clear_input()
 
     async def action_submit(self) -> None:
@@ -89,6 +94,22 @@ class FunYe(App):
             await self.history.update(history_text)
 
         await self.input.clear_input()
+
+    async def action_copy_results(self) -> None:
+        """将翻译的结果拷贝到系统剪切板，并且改变标题样式和边框样式作为提示"""
+        meta = str(self.results.renderable.renderable)
+        pattern = r"\\n"
+        index = [i.start() for i in finditer(pattern, meta)]
+
+        if index:
+            value = ""
+            for i in range(len(index)):
+                if i % 2 != 0:
+                    value += meta[index[i-1]+2:index[i]]
+            copy(value)
+            self.results.renderable.title = RESULTS_COPIED_TITLE
+            self.results.renderable.border_style = RESULTS_COPIED_BORDER_STYLE
+            self.results.refresh()
 
     async def action_quit(self) -> None:
         """关闭开启的内存并关闭应用"""

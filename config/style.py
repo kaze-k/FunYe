@@ -187,4 +187,15 @@ RESULTS_ERROR_STYLE = Style(
     underline=False
 )
 
+RESULTS_COPIED_TITLE = "✔ 已拷贝"
+
+RESULTS_COPIED_BORDER_STYLE = Style(
+    color="#31c27c",
+    bold=True,
+    italic=False,
+    dim=False,
+    blink=False,
+    underline=False
+)
+
 TITLE = "FunYe"

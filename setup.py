@@ -8,7 +8,8 @@ setup(
     packages=find_packages(),
     install_requires=[
         "textual==0.1.18",
-        "textual-inputs==0.2.6"
+        "textual-inputs==0.2.6",
+        "pyperclip>=1.8.2"
     ],
     extras_require={
         'dev': [
