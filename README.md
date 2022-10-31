@@ -2,7 +2,7 @@
 
 ![screenshot](./img/show.gif)
 
-**FunYe**是一个基于[Textual](https://github.com/Textualize/textual)框架的TUI翻译应用
+**FunYe**是一个基于[Textual](https://github.com/Textualize/textual)框架的TUI翻译程序（终端程序）
 
 
 ## 使用
@@ -54,7 +54,7 @@ source ./bin/make.sh
 
 `config/style.py`中可以进行颜色的调整，修改后重新编译一下即可。
 
-## 技术
+## 支持
 - [Textual(v0.1.18)](https://github.com/Textualize/textual)：一个python的TUI框架(现在框架已更新到新的分支)
 
 - [Rich](https://github.com/Textualize/rich)：一个 Python 库，可以为您在终端中提供富文本和精美格式
