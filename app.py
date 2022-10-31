@@ -104,8 +104,8 @@ class FunYe(App):
         original, translation = Translation(value).run()
 
         if translation:
-            results_data = Handler.formatter(
-                self,
+            self.handler = Handler()
+            results_data = self.handler.formatter(
                 style1=RESULTS_ORIGINAL_STYLE,
                 style2=RESULTS_TRANSLATION_STYLE,
                 list1=original,
@@ -157,8 +157,8 @@ class FunYe(App):
         del original_list[0]
         del translation_list[0]
 
-        history_data = Handler.formatter(
-            self,
+        self.handler = Handler()
+        history_data = self.handler.formatter(
             style1=HISTORY_TIME_STYLE,
             style2=HISTORY_ORIGINAL_STYLE,
             style3=HISTORY_TRANSLATION_STYLE,
