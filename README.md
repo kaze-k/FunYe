@@ -30,6 +30,7 @@ source ./FunYe
 - `down` 下一个输入记录
 - `ESC` 退出程序
 - `ctrl+l` 清空输入框中的内容
+- `ctrl+y` 拷贝当前的翻译结果
 
 
 ## 编译
@@ -54,10 +55,12 @@ source ./bin/make.sh
 `config/style.py`中可以进行颜色的调整，修改后重新编译一下即可。
 
 ## 技术
-- [Textual(v0.1.18)](https://github.com/Textualize/textual)是一个python的TUI框架(现在框架已更新到新的分支)
+- [Textual(v0.1.18)](https://github.com/Textualize/textual)：一个python的TUI框架(现在框架已更新到新的分支)
 
-- [Rich](https://github.com/Textualize/rich)是一个 Python 库，可以为您在终端中提供富文本和精美格式
+- [Rich](https://github.com/Textualize/rich)：一个 Python 库，可以为您在终端中提供富文本和精美格式
 
-- [textual-inputs](https://github.com/sirfuzzalot/textual-inputs)是一个基于Textual的输入小组件
+- [textual-inputs](https://github.com/sirfuzzalot/textual-inputs)：一个基于Textual的输入小组件
+
+- [pyperclip](https://github.com/asweigart/pyperclip)：一个用于复制和粘贴剪贴板函数的跨平台 Python 模块，它可以与 Python2和3一起工作。
 
 - [网易有道翻译](https://fanyi.youdao.com/)
