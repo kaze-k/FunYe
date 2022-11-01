@@ -20,8 +20,10 @@ Linux
 `program`目录下的FunYe是Linux上的可执行文件，下载到本地，到终端中切换到文件所在目录下，输入以下命令即可使用。
 
 ```bash
-source ./FunYe
+chmod +x ./FunYe && ./FunYe
 ```
+
+> 如果`program`中的可执行文件无法运行，需要自行重新编译
 
 快捷键
 
@@ -47,7 +49,7 @@ Linux
 source ./bin/make.sh
 ```
 
-有`make`也可以直接`make`
+> 有`make`也可以直接`make`
 
 
 ## 配置颜色样式
