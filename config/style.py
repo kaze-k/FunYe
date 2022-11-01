@@ -198,6 +198,6 @@ RESULTS_COPIED_BORDER_STYLE = Style(
     underline=False
 )
 
-RESULTS_NOT_COPY_TITLE = "⚠ 无法拷贝"
+RESULTS_NOT_COPY_TITLE = "❌ 无法拷贝"
 
 TITLE = "FunYe"
