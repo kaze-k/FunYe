@@ -7,7 +7,7 @@ from re import finditer
 
 from textual.app import App
 from rich.text import Text
-from pyperclip import copy
+from pyperclip import copy, PyperclipException
 
 from src.ui import HistoryBox, InputBox, ResultsBox, Header
 from src.script import Translation, Handler
@@ -21,6 +21,7 @@ from config import (
     RESULTS_ERROR_STYLE,
     RESULTS_COPIED_TITLE,
     RESULTS_COPIED_BORDER_STYLE,
+    RESULTS_NOT_COPY_TITLE,
     TITLE
 )
 
@@ -106,10 +107,14 @@ class FunYe(App):
             for i in range(len(index)):
                 if i % 2 != 0:
                     value += meta[index[i-1]+2:index[i]]
-            copy(value)
-            self.results.renderable.title = RESULTS_COPIED_TITLE
-            self.results.renderable.border_style = RESULTS_COPIED_BORDER_STYLE
-            self.results.refresh()
+            try:
+                copy(value)
+                self.results.renderable.title = RESULTS_COPIED_TITLE
+                self.results.renderable.border_style = RESULTS_COPIED_BORDER_STYLE
+                self.results.refresh()
+            except PyperclipException:
+                self.results.renderable.title = RESULTS_NOT_COPY_TITLE
+                self.results.refresh()
 
     async def action_quit(self) -> None:
         """关闭开启的内存并关闭应用"""
