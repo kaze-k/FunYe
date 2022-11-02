@@ -1,5 +1,6 @@
 .PHONY:
 	all
+	venv
 	install-all
 	install-dev
 	install
@@ -13,9 +14,14 @@
 .DEAFULT:all
 
 all:
-	# install dependencies and compile and pre-commit install
+	# create venv, install dependencies, compile and pre-commit install
+	@make venv
 	@make compile
 	pre-commit install
+
+venv:
+	# create venv
+	python ./tools/venv.py
 
 install-all:
 	# install all dependencies
@@ -24,19 +30,19 @@ install-all:
 
 install-dev:
 	# install develop dependencies
-	pip install -e .[dev]
+	python ./tools/devtools.py -i dev
 
 install:
 	# install dependencies
-	pip install -e .
+	python ./tools/devtools.py -I
 
 compile:install-all
 	# compile
-	pyinstaller -F ./app.py -n "FunYe" -i ./img/icon.ico
+	python ./tools/devtools.py -C
 
 clean:
 	# clean up pip cache
-	pip cache purge
+	python ./tools/devtools.py -c
 
 clear:
 	# delete __pycahe__ directory and *.pyc file
@@ -44,12 +50,12 @@ clear:
 
 lint:
 	# lint code
-	flake8 src
+	python ./tools/devtools.py -l
 
 type:
 	# type check
-	mypy src
+	python ./tools/devtools.py -t
 
 remove:
 	# remove all dependencies(make)
-	pip uninstall -r requirements.txt -y
+	python ./tools/devtools.py -r

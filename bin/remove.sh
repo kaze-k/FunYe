@@ -1,1 +1,1 @@
-pip uninstall -r requirements.txt -y
+python ./tools/devtools.py -r

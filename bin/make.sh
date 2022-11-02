@@ -1,2 +1,2 @@
-pip install py-make
-pymake
+python ./tools/venv.py
+python ./tools/devtools.py -i all -C
