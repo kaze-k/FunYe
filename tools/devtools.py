@@ -13,8 +13,8 @@ helper = """
     -i all        : 安装项目中全部的依赖(项目所需依赖和开发环境依赖)
     -c            : 清理pip缓存(需pip版本>=20.1)
     -C            : 编译二进制文件
-    -l            : 检查src目录下的代码是否符合标准
-    -t            : 检查src目录下的代码是否有类型错误
+    -l            : 检查项目代码是否符合标准
+    -t            : 检查项目代码是否有类型错误
     -r            : 移除项目中安装的所有依赖
 
 长选项:
@@ -24,8 +24,8 @@ helper = """
     --install-all : 安装项目中全部的依赖(项目所需依赖和开发环境依赖)
     --clean       : 清理pip缓存(需pip版本>=20.1)
     --compile     : 编译二进制文件
-    --lint        : 检查src目录下的代码是否符合标准
-    --type        : 检查src目录下的代码是否有类型错误
+    --lint        : 检查项目代码是否符合标准
+    --type        : 检查s项目代码是否有类型错误
     --remove      : 移除项目中安装的所有依赖
 """
 error = "\n错误: 选项错误\n"
@@ -73,17 +73,17 @@ def compiler():
     )
 
 def lint():
-    print("\n» 正在检查src目录下的代码是否符合标准...")
+    print("\n» 正在检查项目代码是否符合标准...")
     command(
-        r".\.venv\Scripts\flake8 src",
-        "./.venv/bin/flake8 src"
+        r".\.venv\Scripts\flake8 src && .\.venv\Scripts\flake8 app.py",
+        "./.venv/bin/flake8 src && ./.venv/bin/flake8 app.py"
     )
 
 def types():
-    print("\n» 正在检查src目录下的代码是否有类型错误...")
+    print("\n» 正在检查项目代码是否有类型错误...")
     command(
-        r".\.venv\Scripts\mypy src",
-        "./.venv/bin/mypy src"
+        r".\.venv\Scripts\mypy src && .\.venv\Scripts\mypy app.py",
+        "./.venv/bin/mypy src && ./.venv/bin/mypy app.py"
     )
 
 def remove():
