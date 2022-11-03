@@ -1,4 +1,5 @@
 import os
+import sys
 
 
 def clear(file_path):
@@ -25,7 +26,8 @@ def main():
     elif os.name == "posix":
         clear("./")
     else:
-        print("未知系统：无法清理")
+        print("? 未知系统：无法清理")
+        sys.exit(3)
 
 if __name__ == "__main__":
     main()

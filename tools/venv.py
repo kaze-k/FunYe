@@ -9,7 +9,7 @@ def venv_path(path):
         env = os.path.join(path, ".venv", "bin")
     else:
         print("? 未知系统")
-        sys.exit(1)
+        sys.exit(3)
     return env
 
 def check_venv(path):

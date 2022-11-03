@@ -42,7 +42,8 @@ def command(nt, posix):
         print(tips)
         os.system(posix)
     else:
-        print("! 未知系统")
+        print("? 未知系统")
+        sys.exit(3)
 
 def install():
     print("\n» 正在安装项目中所需依赖...")
@@ -55,7 +56,7 @@ def install_dev():
     print("\n» 正在安装项目中开发环境依赖...")
     command(
         r".\.venv\Scripts\pip install -e .[dev]",
-        "./.venv/bin/pip install -e .[dev"
+        "./.venv/bin/pip install -e .[dev]"
     )
 
 def clean():
@@ -90,7 +91,7 @@ def remove():
     print("\n» 正在移除项目中安装的所有依赖...")
     command(
         r".\.venv\Scripts\pip uninstall -r requirements.txt -y",
-        "./.venv/bin/pip uninstall -r requirement.txt -y"
+        "./.venv/bin/pip uninstall -r requirements.txt -y"
     )
 
 def main(argv):
