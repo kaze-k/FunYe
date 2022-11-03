@@ -30,7 +30,13 @@ def create_venv(path):
     files = os.listdir(path)
     if not ".venv" in files:
         print("» 正在创建虚拟环境...")
-        os.system("python -m venv .venv")
+        if os.name == "nt":
+            os.system("python -m venv .venv")
+        elif os.name == "posix":
+            os.system("python3 -m venv .venv")
+        else:
+            print("? 未知系统：无法创建虚拟环境")
+            sys.exit(3)
         check_venv(path)
     else:
         print("» 虚拟环境已创建")

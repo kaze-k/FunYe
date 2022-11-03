@@ -16,6 +16,7 @@ helper = """
     -l            : 检查项目代码是否符合标准
     -t            : 检查项目代码是否有类型错误
     -r            : 移除项目中安装的所有依赖
+    -p            : 安装pre-commit
 
 长选项:
     --help        : 查看帮助
@@ -27,6 +28,7 @@ helper = """
     --lint        : 检查项目代码是否符合标准
     --type        : 检查s项目代码是否有类型错误
     --remove      : 移除项目中安装的所有依赖
+    --pre-commit  : 安装pre-commit
 """
 error = "\n错误: 选项错误\n"
 tips = error + helper
@@ -94,11 +96,18 @@ def remove():
         "./.venv/bin/pip uninstall -r requirements.txt -y"
     )
 
+def pre_commit():
+    print("\n» 正在安装pre-commit...")
+    command(
+        r".\.venv\Scripts\pre-commit install",
+        "./.venv/bin/pre-commit install"
+    )
+
 def main(argv):
     try:
         opts, args = getopt.getopt(
             argv,
-            "hIi:cCltr",
+            "hIi:cCltrp",
             [
                 "help",
                 "install",
@@ -108,7 +117,8 @@ def main(argv):
                 "compile",
                 "lint",
                 "type",
-                "remove"
+                "remove",
+                "pre-commit"
             ]
         )
     except getopt.GetoptError:
@@ -134,6 +144,8 @@ def main(argv):
             types()
         elif opt in ("-r", "--remove"):
             remove()
+        elif opt in ("-p", "--pre-commit"):
+            pre_commit()
         else:
             print(tips)
             sys.exit(2)

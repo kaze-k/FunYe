@@ -1,9 +1,17 @@
+# Windows
+PY = python
+
+# Linux
+# PY = python3
+
 .PHONY:
 	all
 	venv
+	pre-commit
 	install-all
 	install-dev
 	install
+	run
 	compile
 	clean
 	clear
@@ -17,11 +25,14 @@ all:
 	# create venv, install dependencies, compile and pre-commit install
 	@make venv
 	@make compile
-	pre-commit install
+	@make pre-commit
 
 venv:
 	# create venv
-	python ./tools/venv.py
+	$(PY) ./tools/venv.py
+
+pre-commit:
+	$(PY) ./tools/devtools.py -p
 
 install-all:
 	# install all dependencies
@@ -30,32 +41,36 @@ install-all:
 
 install-dev:
 	# install develop dependencies
-	python ./tools/devtools.py -i dev
+	$(PY) ./tools/devtools.py -i dev
 
 install:
 	# install dependencies
-	python ./tools/devtools.py -I
+	$(PY) ./tools/devtools.py -I
+
+run:install
+	# run app
+	$(PY) ./app.py
 
 compile:install-all
 	# compile
-	python ./tools/devtools.py -C
+	$(PY) ./tools/devtools.py -C
 
 clean:
 	# clean up pip cache
-	python ./tools/devtools.py -c
+	$(PY) ./tools/devtools.py -c
 
 clear:
 	# delete __pycahe__ directory and *.pyc file
-	python ./tools/clear.py
+	$(PY) ./tools/clear.py
 
 lint:
 	# lint code
-	python ./tools/devtools.py -l
+	$(PY) ./tools/devtools.py -l
 
 type:
 	# type check
-	python ./tools/devtools.py -t
+	$(PY) ./tools/devtools.py -t
 
 remove:
 	# remove all dependencies(make)
-	python ./tools/devtools.py -r
+	$(PY) ./tools/devtools.py -r
