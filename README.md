@@ -9,7 +9,7 @@
 
 Windows
 
-`program`目录下的FunYe.exe是Windows上的可执行文件，下载到本地，到Powershell中切换到文件所在目录下，输入以下命令即可使用。（实测在windows自带的终端模拟器无法完整渲染，最好使用Windows Terminal）
+`programs`目录下的FunYe.exe是Windows上的可执行文件，下载到本地，到Powershell中切换到文件所在目录下，输入以下命令即可使用。（实测在windows自带的终端模拟器无法完整渲染，最好使用Windows Terminal）
 
 ```Powershell
 .\FunYe.exe
@@ -17,7 +17,7 @@ Windows
 
 Linux
 
-`program`目录下的FunYe是Linux上的可执行文件，下载到本地，到终端中切换到文件所在目录下，输入以下命令即可使用。
+`programs`目录下的FunYe是Linux上的可执行文件，下载到本地，到终端中切换到文件所在目录下，输入以下命令即可使用。
 
 ```bash
 chmod +x ./FunYe && ./FunYe

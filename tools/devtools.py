@@ -15,7 +15,8 @@ helper = """
     -C            : 编译二进制文件
     -l            : 检查项目代码是否符合标准
     -t            : 检查项目代码是否有类型错误
-    -r            : 移除项目中安装的所有依赖
+    -r            : 运行项目
+    -R            : 移除项目中安装的所有依赖
     -p            : 安装pre-commit
 
 长选项:
@@ -27,6 +28,7 @@ helper = """
     --compile     : 编译二进制文件
     --lint        : 检查项目代码是否符合标准
     --type        : 检查s项目代码是否有类型错误
+    --run         : 运行项目
     --remove      : 移除项目中安装的所有依赖
     --pre-commit  : 安装pre-commit
 """
@@ -89,6 +91,13 @@ def types():
         "./.venv/bin/mypy src && ./.venv/bin/mypy app.py"
     )
 
+def run():
+    print("\n» 正在运行项目...")
+    command(
+        r".\.venv\Scripts\python .\app.py",
+        "./.venv/bin/python ./app.py"
+    )
+
 def remove():
     print("\n» 正在移除项目中安装的所有依赖...")
     command(
@@ -107,7 +116,7 @@ def main(argv):
     try:
         opts, args = getopt.getopt(
             argv,
-            "hIi:cCltrp",
+            "hIi:cCltrRp",
             [
                 "help",
                 "install",
@@ -142,8 +151,10 @@ def main(argv):
             lint()
         elif opt in ("-t", "--type"):
             types()
-        elif opt in ("-r", "--remove"):
+        elif opt in ("-R", "--remove"):
             remove()
+        elif opt in ("-r", "--run"):
+            run()
         elif opt in ("-p", "--pre-commit"):
             pre_commit()
         else:

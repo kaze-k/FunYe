@@ -49,7 +49,7 @@ install:
 
 run:install
 	# run app
-	$(PY) ./app.py
+	$(PY) ./tools/devtools.py -r
 
 compile:install-all
 	# compile
@@ -73,4 +73,4 @@ type:
 
 remove:
 	# remove all dependencies(make)
-	$(PY) ./tools/devtools.py -r
+	$(PY) ./tools/devtools.py -R
