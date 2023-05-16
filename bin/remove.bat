@@ -1,2 +1,3 @@
 @echo off
-python .\tools\devtools.py -r
+
+python .\tools\devtools.py -R -d -c pyc

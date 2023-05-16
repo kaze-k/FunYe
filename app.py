@@ -89,11 +89,12 @@ class FunYe(App):
         value = self.input.value
 
         if value != "" and not value.isspace():
-            results_text = await self.handle_results_data()
-            history_text = await self.handle_history_data()
-            await self.input.clear_input()
+            results_text = await self.handle_results_data(value)
+            history_text = await self.handle_history_data(value)
             await self.results.update(results_text)
             await self.history.update(history_text)
+
+        await self.input.clear_input()
 
     async def action_copy_results(self) -> None:
         """将翻译的结果拷贝到系统剪切板，并且改变标题样式和边框样式作为提示"""
@@ -123,9 +124,8 @@ class FunYe(App):
         self.data_io.close()
         await self.shutdown()
 
-    async def handle_results_data(self) -> Text:
+    async def handle_results_data(self, value) -> Text:
         """将翻译结果渲染到ResultsBox中，并进行格式化处理"""
-        value = self.input.value
         original, translation = Translation(value).run()
 
         if translation:
@@ -145,7 +145,7 @@ class FunYe(App):
 
         return results_data
 
-    async def handle_history_data(self) -> Text:
+    async def handle_history_data(self, value) -> Text:
         """将得到的译文和原文添加到HistoryBox中，并进行格式化处理"""
         empty = ""
 
@@ -155,7 +155,7 @@ class FunYe(App):
         formatted_time = TIME_SYMBOL + datetime.now().time().strftime("%X") + "\r"
         formatted_original = original + "\r"
         formatted_translation = translation + "\r"
-        formatted_data = self.input.value + "\r"
+        formatted_data = value + "\r"
 
         self.data_io.write(formatted_data)
         if self.translation != []:
