@@ -90,7 +90,7 @@ python ./tools/devtools.py -h # 查看如何使用
 
 
 ## 支持
-- [Textual(v0.1.18)](https://github.com/Textualize/textual)：一个python的TUI框架(现在框架已更新到新的版本)
+- [Textual(v0.1.18)](https://github.com/Textualize/textual/tree/v0.1.18)：一个python的TUI框架(现在框架已更新到[新的版本](https://github.com/Textualize/textual))
 
 - [Rich](https://github.com/Textualize/rich)：一个 Python 库，可以为您在终端中提供富文本和精美格式
 
