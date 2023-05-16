@@ -7,6 +7,7 @@ import json
 from config.base import (
     URL,
     HEAD,
+    LOADING_TEXT,
     ERROR_TEXT
 )
 
@@ -30,6 +31,7 @@ class Translation:
         """处理请求"""
         meta = parse.urlencode(self.arg).encode("utf-8")
         send_request = request.Request(self.url, meta, self.head)
+        accept_response = LOADING_TEXT
         accept_response = request.urlopen(send_request)
 
         return accept_response

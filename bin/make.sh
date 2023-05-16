@@ -1,2 +1,3 @@
-python ./tools/venv.py
-python ./tools/devtools.py -i all -C
+#! /usr/bin/sh
+
+./tools/devtools.py -C

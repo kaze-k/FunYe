@@ -1,11 +1,12 @@
+#! /usr/bin/python
+
 import os
 import sys
+import shutil
 
 
 def clear(file_path):
     files = os.listdir(file_path)
-    if ".venv" in files:
-        files.remove(".venv")
     for fd in files:
         cur_path = os.path.join(file_path, fd)
         if os.path.isdir(cur_path):

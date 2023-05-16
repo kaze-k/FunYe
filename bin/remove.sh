@@ -1,1 +1,3 @@
-python ./tools/devtools.py -r
+#! /usr/bin/sh
+
+./tools/devtools.py -R -d -c pyc

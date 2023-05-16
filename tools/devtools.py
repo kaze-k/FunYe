@@ -1,18 +1,23 @@
+#! /usr/bin/python
+
 import os
 import sys
 import getopt
+import shutil
 
 
 helper = """
-用法: python devtools.py [选项]
+用法: python devtools.py [选项] 或者 devtools.py [选项]
 
 短选项:
     -h            : 查看帮助
     -I            : 安装项目中所需依赖
     -i dev        : 安装项目中开发环境依赖
     -i all        : 安装项目中全部的依赖(项目所需依赖和开发环境依赖)
-    -c            : 清理pip缓存(需pip版本>=20.1)
+    -c cache      : 清理pip缓存(需pip版本>=20.1)
+    -c pyc        : 清除pyc缓存文件
     -C            : 编译二进制文件
+    -d            : 删除虚拟环境
     -l            : 检查项目代码是否符合标准
     -t            : 检查项目代码是否有类型错误
     -r            : 运行项目
@@ -24,10 +29,12 @@ helper = """
     --install     : 安装项目中所需依赖
     --install-dev : 安装项目中开发环境依赖
     --install-all : 安装项目中全部的依赖(项目所需依赖和开发环境依赖)
-    --clean       : 清理pip缓存(需pip版本>=20.1)
+    --clean-cache : 清理pip缓存(需pip版本>=20.1)
+    --clean-pyc   : 清除pyc缓存文件
     --compile     : 编译二进制文件
+    --delete      : 删除虚拟环境
     --lint        : 检查项目代码是否符合标准
-    --type        : 检查s项目代码是否有类型错误
+    --type        : 检查项目代码是否有类型错误
     --run         : 运行项目
     --remove      : 移除项目中安装的所有依赖
     --pre-commit  : 安装pre-commit
@@ -63,11 +70,18 @@ def install_dev():
         "./.venv/bin/pip install -e .[dev]"
     )
 
-def clean():
+def clean_cache():
     print("\n» 正在清理pip缓存...")
     command(
         r".\.venv\Scripts\pip cache purge",
         "./.venv/bin/pip cache purge"
+    )
+
+def clean_pyc():
+    print("\n» 正在清除pyc缓存文件")
+    command(
+            r".\tools\clear.py",
+            "./tools/clear.py"
     )
 
 def compiler():
@@ -76,6 +90,19 @@ def compiler():
         r".\.venv\Scripts\pyinstaller -F .\app.py -n FunYe -i .\img\icon.ico",
         "./.venv/bin/pyinstaller -F ./app.py -n FunYe"
     )
+
+def delete():
+    print("\n» 正在删除虚拟环境...")
+    if os.name == "nt":
+        files = os.listdir(".\\")
+    elif os.name == "posix":
+        files = os.listdir("./")
+    else:
+        print("? 未知系统：无法清理")
+        sys.exit(3)
+
+    if ".venv" in files:
+        shutil.rmtree(".venv")
 
 def lint():
     print("\n» 正在检查项目代码是否符合标准...")
@@ -116,14 +143,16 @@ def main(argv):
     try:
         opts, args = getopt.getopt(
             argv,
-            "hIi:cCltrRp",
+            "hIi:c:CdltrRp",
             [
                 "help",
                 "install",
                 "install-dev",
                 "install-all",
-                "clean",
+                "clean-cache",
+                "clean-pyc",
                 "compile",
+                "delete",
                 "lint",
                 "type",
                 "remove",
@@ -143,10 +172,14 @@ def main(argv):
         elif opt == "-i" and arg == "all" or opt == "--install-all":
             install()
             install_dev()
-        elif opt in ("-c", "--clean"):
-            clean()
+        elif opt == "-c" and arg == "cache" or opt == "--clean-cache":
+            clean_cache()
+        elif opt == "-c" and arg == "pyc" or opt == "--clean-pyc":
+            clean_pyc()
         elif opt in ("-C", "--compile"):
             compiler()
+        elif opt in ("-d", "--delete"):
+            delete()
         elif opt in ("-l", "--lint"):
             lint()
         elif opt in ("-t", "--type"):

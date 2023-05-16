@@ -91,10 +91,9 @@ class FunYe(App):
         if value != "" and not value.isspace():
             results_text = await self.handle_results_data()
             history_text = await self.handle_history_data()
+            await self.input.clear_input()
             await self.results.update(results_text)
             await self.history.update(history_text)
-
-        await self.input.clear_input()
 
     async def action_copy_results(self) -> None:
         """将翻译的结果拷贝到系统剪切板，并且改变标题样式和边框样式作为提示"""

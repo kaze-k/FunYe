@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import os
 import sys
 
@@ -20,11 +22,11 @@ def check_venv(path):
         if os.name == "nt":
             print("» 请使用以下命令进入虚拟环境")
             print(r"» .\.venv\Scripts\activate")
-            sys.exit(2)
+            sys.exit(0)
         elif os.name == "posix":
             print("» 请使用以下命令进入虚拟环境")
-            print("» source ./.venv/bin/activate")
-            sys.exit(2)
+            print(r"» source ./.venv/bin/activate")
+            sys.exit(0)
 
 def create_venv(path):
     files = os.listdir(path)
