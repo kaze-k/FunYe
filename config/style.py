@@ -8,7 +8,7 @@ Args:
     color(Union[Color, str], 可选)：文本颜色
     bold(bool, 可选)：加粗字体
     italic(bool, 可选)：斜体
-    dim(bool, 可选)：暗浅色，开启后文本闪烁无非使用
+    dim(bool, 可选)：暗浅色，开启后文本闪烁无法使用
     underline(bool, 可选)：下划线
     blink(bool, 可选)：文本闪烁
 
