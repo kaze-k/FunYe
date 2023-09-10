@@ -1,5 +1,8 @@
 # FunYe
 
+> :bangbang: 网易翻译的接口挂了 T_T
+> 所以用不了
+
 ![screenshot](./img/show.gif)
 
 **FunYe**是一个基于[Textual](https://github.com/Textualize/textual)框架的TUI翻译程序（终端程序）
@@ -54,7 +57,7 @@ sh ./bin/make.sh # 执行编译
 ```
 
 > 有`make`也可以直接`make`
-> 
+>
 > 需要在项目根目录下运行脚本编译
 
 
